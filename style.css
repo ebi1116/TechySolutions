@@ -396,6 +396,8 @@ img {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-item:hover {
@@ -406,23 +408,62 @@ img {
 .portfolio-image {
     width: 100%;
     height: 220px;
-    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
 }
 
-.portfolio-item:hover .portfolio-image {
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-image img {
     transform: scale(1.05);
 }
 
 .portfolio-item h3 {
-    padding: 20px 20px 0;
+    padding: 20px 20px 5px;
     color: var(--text-dark);
+    margin: 0;
 }
 
 .portfolio-item p {
     padding: 0 20px 20px;
     margin: 0;
     font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Ensure the portfolio content takes remaining space */
+.portfolio-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .portfolio-image {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-image {
+        height: 180px;
+    }
 }
 
 /* Contact Section */
